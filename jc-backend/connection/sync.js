@@ -1,3 +1,4 @@
+require('dotenv').config();
 const sequelize = require('./db');
 const Trainee = require('../models/Trainee');
 const PaymentPlan = require('../models/PaymentPlan');
@@ -10,7 +11,7 @@ const Schedule = require('../models/Schedule');
 
 async function syncDatabase() {
   try {
-    await sequelize.sync({ force: false, alter: false });
+    await sequelize.sync({force: false});
     console.log('Banco de dados sincronizado.');
   } catch (error) {
     console.error('Erro ao sincronizar banco de dados:', error);
