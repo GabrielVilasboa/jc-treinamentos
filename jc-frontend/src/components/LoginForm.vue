@@ -9,28 +9,41 @@
             <input type="password" id="password" :placeholder="$message.login.password" v-model="password">    
         </div>
         <button class="enter" @click="login"> {{ $message.login.enter }}</button>
-
-
     </form>
+
+    <p v-if="errorMessage">{{ errorMessage }}</p>
 </template>
 
 <script>
+
+    import axios from 'axios';
+    import CoachService from '../service/CoachService'
+
     export default {
         data() {
             return {
                 email: "",
                 password: "",
+                errorMessage: ""
             }
         },
         methods: {
-            // check login data in de db and return a boolean  
-            checkLogin(){
-                return true
-            },
+            async login(){
+                try{
 
-            login(){
-                if(this.checkLogin()){
-                    this.$router.push({ name: "main"})
+                    const url = import.meta.env.VITE_API_URL + "login"
+
+                    const response = await axios.post(url, {
+                        email: this.email,
+                        password: this.password
+                    })
+                    localStorage.setItem('token', response.data.token)
+                    localStorage.setItem('coachId', response.data.coachId)
+                    
+                    this.$router.push('/')
+                }catch(e){
+                    console.error(e.message)
+                    this.errorMessage = "Email ou Senha Invalidos"
                 }
             }
         },

@@ -1,6 +1,6 @@
 <script setup >
 import BasicLayout from '../components/BasicLayout.vue';
-import FinanceDashbord from '../components/FinanceDashboard.vue';
+//import FinanceDashboard from '../components/dashboards/FinanceDashboard.vue';
 </script>
 
 <template>

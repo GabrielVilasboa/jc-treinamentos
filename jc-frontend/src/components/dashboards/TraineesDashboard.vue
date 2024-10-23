@@ -63,7 +63,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import Controller from '../controller/index.js';
+import Controller from '../../service/index.js';
 
 const controller = new Controller();
 const trainees = controller.trainees;

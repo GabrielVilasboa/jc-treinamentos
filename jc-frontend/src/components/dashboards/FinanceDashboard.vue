@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue';
-import BasicCard from './BasicCard.vue';
-import Controller from '../controller/index.js';
+import BasicCard from '../BasicCard.vue';
+import Controller from '../../service/index.js';
 import PaymentPlans from '@/models/PaymentPlans';
 
 // Criação da instância de Controller
