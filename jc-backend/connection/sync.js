@@ -8,10 +8,15 @@ const Coach = require('../models/Coach');
 const Session = require('../models/Session');
 const TraineeSession = require('../models/TraineeSession');
 const Schedule = require('../models/Schedule');
+const ScheduleConfig = require('../models/ScheduleConfig')
+const Config = require('../models/Config')
+
+const scheduleController = require('../controller/ScheduleController');
 
 async function syncDatabase() {
   try {
     await sequelize.sync({force: false});
+    await scheduleController.ensure90DaysOfSchedules();
     console.log('Banco de dados sincronizado.');
   } catch (error) {
     console.error('Erro ao sincronizar banco de dados:', error);

@@ -5,13 +5,10 @@ class Schedule extends Model {}
 
 Schedule.init({
   date: {
-    type: DataTypes.DATE,
+    type: DataTypes.DATEONLY,
     allowNull: false
   },
-  time: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
+
   weekDay: {
     type: DataTypes.STRING,
     allowNull: false

@@ -17,7 +17,6 @@
 <script>
 
     import axios from 'axios';
-    import CoachService from '../service/CoachService'
 
     export default {
         data() {
@@ -39,7 +38,7 @@
                     })
                     localStorage.setItem('token', response.data.token)
                     localStorage.setItem('coachId', response.data.coachId)
-                    
+
                     this.$router.push('/')
                 }catch(e){
                     console.error(e.message)
