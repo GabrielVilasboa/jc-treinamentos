@@ -1,24 +1,40 @@
-const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../connection/db');
-const Trainee = require('./Trainee');
-const Session = require('./Session');
+const { Model, DataTypes } = require("sequelize");
 
-class TraineeSession extends Model {}
+module.exports = (sequelize) => {
+  class TraineeSession extends Model {}
 
-TraineeSession.init({
-  attendance: {
-    type: DataTypes.INTEGER
-  },
-  isRecurring: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: false
-  },
-}, {
-  sequelize,
-  modelName: 'TraineeSession'
-});
+  TraineeSession.init(
+    {
+      attendance: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: null,
+      },
+      isRecurring: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+      },
+      traineeId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: "Trainee",
+          key: "id",
+        },
+      },
+      sessionId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: "Session",
+          key: "id",
+        },
+      },
+    },
+    {
+      sequelize,
+      modelName: "TraineeSession",
+    }
+  );
 
-TraineeSession.belongsTo(Trainee, { foreignKey: 'traineeId' });
-TraineeSession.belongsTo(Session, { foreignKey: 'sessionId' });
-
-module.exports = TraineeSession;
+  return TraineeSession;
+};

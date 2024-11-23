@@ -1,32 +1,32 @@
 const { Model, DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
-  class Session extends Model {}
+  class TraineeSessionConfig extends Model {}
 
-  Session.init(
+  TraineeSessionConfig.init(
     {
-      maxTrainee: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
       time: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      scheduleId: {
+      dayOfWeek: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      traineeId: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-          model: "Schedule",
+          model: "Trainee",
           key: "id",
         },
       },
     },
     {
       sequelize,
-      modelName: "Session",
+      modelName: "TraineeSessionConfig",
     }
   );
 
-  return Session;
+  return TraineeSessionConfig;
 };

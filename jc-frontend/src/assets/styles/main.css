@@ -1,6 +1,11 @@
 @import './bases.css';
 @import './components.css';
 @import './login.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 *{
   margin: 0;
   padding: 0;

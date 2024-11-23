@@ -1,36 +1,34 @@
-const express = require('express')
-const cors = require('cors')
-const path=require('path')
+require("dotenv").config();
 
-const app = express()
-const port = 8000
+const express = require("express");
+const cors = require("cors");
+const path = require("path");
+const port = process.env.PORT;
 
-const syncDatabase = require('./connection/sync');
-const routes = require('./routes')
-const publicRoute = require('./routes/public')
+const app = express();
+
+const syncDatabase = require("./connection/sync");
+const routes = require("./routes");
 
 app.use(cors());
 
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.json());
+app.use("/api", routes);
 
-app.use(express.json())
-app.use('/api', routes)
-app.use('/', publicRoute)
 
-require('./jobs/scheduler');
+
+require("./jobs/scheduler");
 
 async function startServer() {
-    try {
-      // Sincroniza o banco de dados
-      await syncDatabase()
-      
-      // Inicia o servidor após a sincronização
-      app.listen(port, () => {
-        console.log("Servidor rodando")
-      });
-    } catch (error) {
-      console.error('Erro ao iniciar o servidor:', error)
-    }
-  }
+  try {
+    await syncDatabase();
 
-  startServer()
+    app.listen(port, () => {
+      console.log("Servidor rodando na porta:" + port);
+    });
+  } catch (error) {
+    console.error("Erro ao iniciar o servidor:", error);
+  }
+}
+
+startServer();

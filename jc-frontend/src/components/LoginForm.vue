@@ -2,7 +2,7 @@
     <form @submit.prevent>
         <div class="input-login">
             <label for="email">{{ $message.login.email }}</label>
-            <input type="email" id="email" :placeholder="$message.login.email" v-model="email" >
+            <input type="text" id="email" :placeholder="$message.login.email" v-model="email" >
         </div>
         <div class="input-login">
             <label for="password">{{ $message.login.password }}</label>
@@ -14,37 +14,28 @@
     <p v-if="errorMessage">{{ errorMessage }}</p>
 </template>
 
-<script>
+<script setup>
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+import LoginService from "../service/LoginService";
 
-    import axios from 'axios';
+const email = ref("");
+const password = ref("");
+const errorMessage = ref("");
 
-    export default {
-        data() {
-            return {
-                email: "",
-                password: "",
-                errorMessage: ""
-            }
-        },
-        methods: {
-            async login(){
-                try{
+const router = useRouter();
 
-                    const url = import.meta.env.VITE_API_URL + "login"
+const login = async () => {
+  try {
+    const data = await LoginService.login(email.value, password.value);
 
-                    const response = await axios.post(url, {
-                        email: this.email,
-                        password: this.password
-                    })
-                    localStorage.setItem('token', response.data.token)
-                    localStorage.setItem('coachId', response.data.coachId)
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("coachId", data.coachId);
 
-                    this.$router.push('/')
-                }catch(e){
-                    console.error(e.message)
-                    this.errorMessage = "Email ou Senha Invalidos"
-                }
-            }
-        },
-    }
+    router.push("/");
+  } catch (error) {
+    console.error(error);
+    errorMessage.value = "Email ou Senha inválidos";
+  }
+};
 </script>

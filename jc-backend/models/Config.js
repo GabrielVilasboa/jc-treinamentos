@@ -1,21 +1,24 @@
-const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../connection/db');
+const { Model, DataTypes } = require("sequelize");
 
+module.exports = (sequelize) => {
+  class Config extends Model {}
 
-class Config extends Model {}
+  Config.init(
+    {
+      key: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      value: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+    },
+    {
+      sequelize,
+      modelName: "Config",
+    }
+  );
 
-Config.init({
-  key: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  value: {
-    type: DataTypes.INTEGER,
-    allowNull: false
-  }
-}, {
-  sequelize,
-  modelName: 'Config'
-});
-
-module.exports = Config;
+  return Config;
+};
