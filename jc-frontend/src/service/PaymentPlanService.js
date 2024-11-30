@@ -6,4 +6,4 @@ class PaymentPlanService extends BaseService{
     }
 }
 
-export default PaymentPlanService
+export default new PaymentPlanService()

@@ -1,4 +1,4 @@
-import http from "../utils/http-common";
+import http from "../utils/httpCommon";
 
 class BaseService {
   constructor(resource) {
@@ -20,8 +20,8 @@ class BaseService {
     return response.data;
   }
 
-  async update(id, data) {
-    const response = await http.put(`/${this.resource}/${id}`, data);
+  async update(data) {
+    const response = await http.put(`/${this.resource}/${data.id}`, data);
     return response.data;
   }
 

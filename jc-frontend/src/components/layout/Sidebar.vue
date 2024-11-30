@@ -1,7 +1,7 @@
 <template>
-    <div class="sidebar">
-        <router-link to="/trainees" class="router-button"><img class="router-image" src="../assets/icons/trainees.png" alt="trainees Page"></router-link>
-        <router-link to="/" class="router-button"><img class="router-image" src="../assets/icons/finance.png" alt="trainees Page"></router-link>
+    <div class="sidebar bg-secondary" >
+        <router-link to="/trainees" class="router-button "><img class="router-image" src="../../assets/icons/trainees.png" alt="trainees Page"></router-link>
+        <router-link to="/" class="router-button"><img class="router-image" src="../../assets/icons/finance.png" alt="trainees Page"></router-link>
     </div>
 </template>
 
@@ -14,7 +14,6 @@
     left: 0; 
     height: 100vh; 
     width: 60px; 
-    background-color: var(--secondary-color); 
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.959);
     
 }
@@ -34,7 +33,7 @@
 }
 
 .router-button:hover{
-    background-color: var(--secondary-color-hover); 
+    background-color: #5e5fa8; 
     box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
 }
 </style>

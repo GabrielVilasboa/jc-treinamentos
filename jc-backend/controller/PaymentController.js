@@ -44,7 +44,11 @@ class PaymentController extends BaseController {
 
   async createPaymentForAllTrainees() {
     try {
-      const trainees = await Trainee.findAll();
+      const trainees = await Trainee.findAll({
+        where:{
+          isActive: true
+        }
+      });
       if (!trainees.length) {
         console.log("Nenhum trainee encontrado");
         return;

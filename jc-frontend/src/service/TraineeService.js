@@ -1,5 +1,5 @@
 import BaseService from "./BaseService";
-import http from "../utils/http-common"
+import http from "../utils/httpCommon"
 class TraineeService extends BaseService{
     constructor(){
         super("trainees")

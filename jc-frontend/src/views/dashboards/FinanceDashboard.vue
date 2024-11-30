@@ -1,5 +1,5 @@
 <script setup>
-import BasicCard from '../../components/BasicCard.vue';
+import BasicCard from '../../components/bases/BaseCard.vue';
 </script>
 
 <template>
@@ -11,6 +11,9 @@ import BasicCard from '../../components/BasicCard.vue';
                 Lucro Mensal: Lucro Mensal <br>
 
             </BasicCard>
+            <BasicCard> Olá Mundo</BasicCard>
+            <BasicCard> Olá Mundo</BasicCard>
+            <BasicCard> Olá Mundo</BasicCard>
             <BasicCard> Olá Mundo</BasicCard>
 
 

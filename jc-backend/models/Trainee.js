@@ -1,6 +1,5 @@
 const { Model, DataTypes } = require("sequelize");
 const { differenceInYears } = require('date-fns');
-const PaymentPlan = require("./PaymentPlan");
 
 module.exports = (sequelize) => {
   class Trainee extends Model {}
@@ -10,6 +9,7 @@ module.exports = (sequelize) => {
       name: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true
       },
       birthDate: {
         type: DataTypes.DATE,
@@ -50,7 +50,7 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-          model: PaymentPlan,
+          model: "PaymentPlans",
           key: "id",
         },
       },

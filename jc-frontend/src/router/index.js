@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import verifyToken from '../utils/verify-token'
+import verifyToken from '../utils/verifyToken'
 import LoginView from '../views/LoginView.vue'
 import MainView from '../views/MainView.vue'
 import FinanceDashboard from '../views/dashboards/FinanceDashboard.vue'

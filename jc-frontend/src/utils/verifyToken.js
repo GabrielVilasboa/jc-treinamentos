@@ -1,4 +1,4 @@
-import http from "./http-common"
+import http from "./httpCommon"
 
 async function verifyToken(){
     const token = localStorage.getItem('token')

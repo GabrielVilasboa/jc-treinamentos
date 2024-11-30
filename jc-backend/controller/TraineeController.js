@@ -16,7 +16,14 @@ class TraineeController extends BaseController {
     const transaction = await sequelize.transaction();
 
     try {
-      const newTrainee = await Trainee.create(req.body, { transaction });
+      const trainee = req.body
+
+      if(await this.checkUniqueTrainee(trainee)){
+        await transaction.rollback();
+        return res.status(500).json({message: "Este aluno já está cadastrado. Tente usar um nome diferente."})
+      }
+
+      const newTrainee = await Trainee.create(trainee, { transaction });
 
       const newPayment = await paymentController.createPaymentForTrainee(
         newTrainee,
@@ -57,7 +64,8 @@ class TraineeController extends BaseController {
           
         }
       ],
-        where: filters
+        where: filters,
+        order:[ ['isActive', 'DESC']]
         
       });
 
@@ -67,6 +75,12 @@ class TraineeController extends BaseController {
       console.error("Erro ao buscar trainees:", error);
       res.status(500).json({ error: "Erro interno do servidor." });
     }
+  }
+
+  async checkUniqueTrainee(trainee) {
+    const existingTrainee = await Trainee.findOne({ where: { name: trainee.name } });
+    console.log(existingTrainee !== null)
+    return existingTrainee !== null; // Retorna `true` se o trainee já existe, `false` caso contrário
   }
 }
 

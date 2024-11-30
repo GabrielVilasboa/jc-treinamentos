@@ -14,14 +14,14 @@ const TraineeSession = require("./TraineeSession")(sequelize);
 const TraineeSessionConfig = require("./TraineeSessionConfig")(sequelize);
 
 // Configurar relacionamentos
-Payment.belongsTo(Trainee, { foreignKey: "traineeId" }); // Um pagamento pertence a um trainee
+Payment.belongsTo(Trainee, { foreignKey: "traineeId", onDelete: "CASCADE" }); // Um pagamento pertence a um trainee
 Trainee.hasMany(Payment, { foreignKey: "traineeId" }); // Um trainee pode ter vários pagamentos
 
 Payment.belongsTo(PaymentPlan, { foreignKey: "paymentPlanId" }); // Um pagamento pertence a um plano de pagamento
 PaymentPlan.hasMany(Payment, { foreignKey: "paymentPlanId" }); // Um plano de pagamento pode ter vários pagamentos
 
-Trainee.belongsTo(PaymentPlan, { foreignKey: 'paymentPlanId', onDelete: 'SET NULL' }); // Um trainee tem um plano de pagamento
-PaymentPlan.hasMany(Trainee, { foreignKey: 'paymentPlanId', onDelete: 'SET NULL' }); // Um plano de pagamento pode ter vários trainees
+Trainee.belongsTo(PaymentPlan, { foreignKey: 'paymentPlanId' }); // Um trainee tem um plano de pagamento
+PaymentPlan.hasMany(Trainee, { foreignKey: 'paymentPlanId'  }); // Um plano de pagamento pode ter vários trainees
 
 TraineeSession.belongsTo(Trainee, { foreignKey: "traineeId" }); // Uma sessão está associada a um trainee
 Trainee.hasMany(TraineeSession, { foreignKey: "traineeId" }); // Um trainee pode ter várias sessões

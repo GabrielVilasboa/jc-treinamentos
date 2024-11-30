@@ -1,4 +1,4 @@
-import http from "../utils/http-common";
+import http from "../utils/httpCommon";
 import axios from "axios";
 
 class LoginService {
@@ -6,9 +6,9 @@ class LoginService {
     this.apiUrl = import.meta.env.VITE_API_URL;
   }
 
-  async login(email, password) {
+  async login(coach) {
     const url = `${this.apiUrl}/login`;
-    const response = await axios.post(url, { email, password });
+    const response = await axios.post(url, coach);
     return response.data; 
   }
 
