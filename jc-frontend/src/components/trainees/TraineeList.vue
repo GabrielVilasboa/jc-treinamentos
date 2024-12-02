@@ -8,9 +8,9 @@
         <BaseAccordion
           :title="trainee.name"
           :extraButton="ableEdit ? '/src/assets/icons/edit.png': null"
-          :extraFunction="ableEdit ? () => sendSelected(trainee, 'editTrainee') : null"
+          :extraFunction="ableEdit ? () => sendSelected(trainee, 'edit') : null"
           width="w-screen-limit"
-          :icon-function="ableEdit ? () => sendSelected(trainee, 'disabladTrainee') : null"
+          :icon-function="ableEdit ? () => sendSelected(trainee, 'disabled') : null"
           :icon="trainee.isActive ? 
             '/src/assets/icons/actived.png' : 
             '/src/assets/icons/inactive.png'"
@@ -68,8 +68,8 @@
 
   const emit = defineEmits(['sendSelectedTrainee'])
 
-  const sendSelected = (trainee, method) =>{
-    emit('sendSelectedTrainee', formatTraineeSelected(trainee, method))
+  const sendSelected = (trainee, method = '') =>{
+    emit('sendSelectedTrainee', formatTraineeSelected(trainee), method)
   }
 
   const formatTraineeSelected = (trainee) => {

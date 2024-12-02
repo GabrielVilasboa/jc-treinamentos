@@ -65,7 +65,7 @@ class TraineeController extends BaseController {
         }
       ],
         where: filters,
-        order:[ ['isActive', 'DESC']]
+        order:[ ['isActive', 'DESC'], ['name']]
         
       });
 
@@ -77,6 +77,33 @@ class TraineeController extends BaseController {
     }
   }
 
+  async tradeStatus(req, res) {
+    try {
+      const id = req.params.id;
+
+      const trainee = await Trainee.findOne({ where: { id } });
+  
+      if (!trainee) {
+        return res.status(404).json({ message: "Trainee não encontrado" });
+      }
+
+      const newStatus = !trainee.isActive;
+
+      const [updatedRowCount] = await Trainee.update(
+        { isActive: newStatus },
+        { where: { id } }
+      );
+  
+      if (updatedRowCount === 0) {
+        return res.status(500).json({ message: "Erro ao atualizar o status" });
+      }
+
+      return res.status(200).json({ message: `Status do trainee atualizado para ${newStatus ? 'ativo' : 'inativo'}` });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ message: "Erro interno do servidor" });
+    }
+  }
   async checkUniqueTrainee(trainee) {
     const existingTrainee = await Trainee.findOne({ where: { name: trainee.name } });
     console.log(existingTrainee !== null)

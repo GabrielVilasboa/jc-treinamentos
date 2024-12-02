@@ -10,6 +10,18 @@ class TraineeService extends BaseService{
         console.log('GET /api/trainees/schedule-data: ' + response.data)
         return response.data;
       }
+
+      async tradeStatus(id){
+        try {
+            const response = await http.put(`/trainees/trade-status/${id}`);
+            console.log('PUT /api/trainees/trade-status/:id/: ', response.data);
+            
+            return response.data;
+          } catch (error) {
+            console.error("Erro ao alternar o status do trainee:", error);
+            throw error;
+          }
+      }
     
 }
 
