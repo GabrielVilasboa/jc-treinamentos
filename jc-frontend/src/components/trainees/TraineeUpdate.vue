@@ -99,10 +99,8 @@
         class="btn btn-primary w-full py-2 mt-4 text-white text-lg font-bold transition-shadow duration-300 hover:shadow-lg active:shadow-sm">
         Atualizar Aluno!
       </button>
-  
+
       <BaseAlert v-if="alert.show" :title="alert.title" :message="alert.message" :alertType="alert.type" />
-  
-  
     </form>
   </template>
   
@@ -111,9 +109,8 @@
   import TraineeService from '@/service/TraineeService';
   import BaseInput from '../bases/BaseInput.vue';
   import BaseSelect from '../bases/BaseSelect.vue';
-  import { ref, onMounted } from 'vue';
+  import { ref, onMounted} from 'vue';
   import BaseTextarea from '../bases/BaseTextarea.vue';
-  import BaseAlert from '../bases/BaseAlert.vue';
 
   const props = defineProps({
     trainee: {type: Object, required: true}
@@ -150,20 +147,13 @@
   
       await TraineeService.update(props.trainee);
       console.log("Trainee atualizado com sucesso");
-  
-      clearfields()
       showAlert("Sucesso!", "Dados do aluno atualizado com sucesso!", 'success')
-  
     } catch (error) {
       console.error(error)
-      showAlert("Algo deu errado.", error.response.data.message, 'error')
+      showAlert('Erro!', 'Ouve um erro ao atualizar o Aluno', 'error', 4000);
     }
   
   };
-  
-  const clearfields = () => {
-    props.trainee = {}
-  }
   
   const clearErrors = () => {
     errors.value = {};

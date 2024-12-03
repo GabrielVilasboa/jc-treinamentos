@@ -7,7 +7,7 @@
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"
         :class="[
-          'textarea textarea-bordered w-full py-2 px-4 mt-1 rounded-md border focus:ring-2',
+          'textarea textarea-bordered w-full', padding ,' mt-1 rounded-md border focus:ring-2',
           error ? 'border-red-500 focus:ring-red-500' : 'border-gray-400 focus:ring-indigo-500',
           'disabled:cursor-auto disabled:text-primary disabled:text-base'
         ]"
@@ -25,6 +25,7 @@
     label: String,
     placeholder: String,
     error: String,
+    padding: {type: String, default: "py-2 px-4"},
     rows: { type: Number, default: 4 }, // Define o número de linhas padrão do textarea
     width: { type: String, default: "w-full" },
     disabled: {type: Boolean, default: false}

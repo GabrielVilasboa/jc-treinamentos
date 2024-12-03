@@ -1,5 +1,5 @@
 <template>
-    <ul class="list p-4 max-w-5xl">
+    <ul class="list">
       <li
         v-for="(trainee, index) in trainees"
         :key="index"
@@ -9,7 +9,7 @@
           :title="trainee.name"
           :extraButton="ableEdit ? '/src/assets/icons/edit.png': null"
           :extraFunction="ableEdit ? () => sendSelected(trainee, 'edit') : null"
-          width="w-screen-limit"
+          width=""
           :icon-function="ableEdit ? () => sendSelected(trainee, 'disabled') : null"
           :icon="trainee.isActive ? 
             '/src/assets/icons/actived.png' : 

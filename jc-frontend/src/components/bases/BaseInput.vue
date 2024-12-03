@@ -59,9 +59,6 @@ const formatName = (value) => {
         .replace(/\b\w/g, char => char.toUpperCase());
 }
 
-// Variável para armazenar o valor formatado
-const formattedInitialValue = ref('');
-
 
 const handleInput = (event) => {
     let value = event.target.value;

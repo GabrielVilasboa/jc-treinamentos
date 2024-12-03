@@ -1,24 +1,23 @@
 <template>
   <div class="dashboard">
-    <header
-      class="flex flex-row justify-between text-2xl font-semibold mx-4 my-6 text-primary border-b-2 border-secondary">
-      {{ $message.traineesDashboard.title }}
+    <BaseDashboard :title="$message.traineesDashboard.title" >
+      <template #header>
+          <BaseSearchBar 
+            v-model="searchTerm" 
+            placeholder="Pesquisar por nome..." 
+            @update:modelValue="getTrainees"
+          />
+          <img src="../../assets/icons/add.png" alt="Adicionar" class="cursor-pointer" @click="openModalForAddTrainee">
+      </template>
 
-      <div class="icons flex h-6">
-        <BaseSearchBar 
-          v-model="searchTerm" 
-          placeholder="Pesquisar por nome..." 
-          @update:modelValue="getTrainees"
-        />
-        <img src="../../assets/icons/add.png" alt="Adicionar" class="cursor-pointer" @click="openModalForAddTrainee">
-      </div>
-    </header>
-
-    <TraineeList 
-      :trainees="trainees" 
-      :ableEdit="true"
-      @sendSelectedTrainee="handleSelectedTrainee">
-    </TraineeList>
+      <template #body>
+        <TraineeList 
+          :trainees="trainees" 
+          :ableEdit="true"
+          @sendSelectedTrainee="handleSelectedTrainee">
+        </TraineeList>
+      </template>
+    </BaseDashboard>
 
     <BaseModal ref="modalRefUpdate" :onClose="handlerOnCloseModal">
       <template #title>
@@ -38,7 +37,6 @@
       </template>
     </BaseModal>
 
-    
     <BaseModal ref="modalRefDisabled" :onClose="handlerOnCloseModal">
       <template #title>
         Mudar Status Do Aluno
@@ -54,6 +52,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
+import BaseDashboard from './BaseDashboard.vue';
 import TraineeList from '@/components/trainees/TraineeList.vue';
 import BaseModal from '@/components/bases/BaseModal.vue';
 import BaseSearchBar from '@/components/bases/BaseSearchBar.vue'; 
@@ -70,6 +69,11 @@ const modalRefUpdate = ref(null);
 const modalRefDisabled = ref(null);
 const traineeForUpdate = ref({})
 
+
+onMounted(async () => {
+  await getTrainees();
+});
+
 const openModal = (modalRef) => {
   modalRef.openModal();
 }
@@ -81,10 +85,6 @@ const closeModalTradeStatus = () => {
 const handlerOnCloseModal = async () => {
   await getTrainees();
 }
-
-onMounted(async () => {
-  await getTrainees();
-});
 
 const openModalForEditTrainee = (trainee) => {
   traineeForUpdate.value = trainee;
