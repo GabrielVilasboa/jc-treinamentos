@@ -25,6 +25,7 @@ class PaymentPlanController extends BaseController {
           },
         ],
         group: ['PaymentPlan.id'],
+        order: [['name']]
       })
       res.status(200).json(paymentPlans);
     } catch (error) {

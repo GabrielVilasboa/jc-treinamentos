@@ -21,6 +21,7 @@
               <p>Data de Aniversário: {{ formatDate(trainee.birthDate) }}</p>
               <p>CPF: {{ formatCPF(trainee.cpf) }}</p>
               <p>Data de pagamento: {{ trainee.paymentDay }}</p>
+              <p>Endereço: {{ trainee.address }}</p>
             </div>
             <div class="flex flex-col gap-y-0.5">
               <p>Valor do Pagamento: {{ trainee.PaymentPlan.value.toFixed(2).replace('.', ',') }} R$</p>

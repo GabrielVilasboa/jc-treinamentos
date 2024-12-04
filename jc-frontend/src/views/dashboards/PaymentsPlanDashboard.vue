@@ -14,7 +14,7 @@
         Atualizar Plano de Pagamento
       </template>
       <template #content>
-        <PaymentPlanUpdate :plan="paymentPlanSelected" @plan-updated="onUpdated"/>
+        <PaymentPlanUpdate :plan="paymentPlanSelected" @plan-updated="onSend"/>
       </template>
     </BaseModal>
 
@@ -23,7 +23,7 @@
         Adicionar Plano de Pagamento
       </template>
       <template #content>
-          <PaymentPlanAdd/>
+          <PaymentPlanAdd @plan-created="onSend"/>
       </template>
     </BaseModal>
 
@@ -58,7 +58,7 @@ onMounted(async () => {
     await fetchPaymentPlan()
 })
 
-const onUpdated = () => {
+const onSend = () => {
   modalRefUpdate.value.closeModal()
 }
 
