@@ -45,6 +45,7 @@ import {ref} from 'vue'
 import BaseInput from './BaseInput.vue';
 import BaseTextarea from "../bases/BaseTextarea.vue";
 import BaseSelect from '../bases/BaseSelect.vue';
+import { addAlert } from '../alerts/useAlerts.js';
 
 const props = defineProps({
     model: {type: Object,required: true,},
@@ -52,8 +53,6 @@ const props = defineProps({
     formClass: {type: String, default: "flex flex-wrap gap-4",},
     onSubmit: {type: Function, required: true,},
     errorsHint: {type: String, required: false,},
-    isClearfields: {type: Boolean, default: false},
-    
     
   inputs: {
     type: Array,
@@ -126,19 +125,35 @@ const props = defineProps({
 const errors = ref({})
 
 const handlerSubmit = async () => {
-   try {
-    clearErrors();
-    verifyFields();
-    if (verifyErrors()) {
-        console.warn("Required fields is empty!") 
-        return
-    }
-    await props.onSubmit()
-    console.log("Sucesso em " + props.errorsHint + "!"); 
-    clearfields()
-  } catch (error) {
-    console.error(error)
+  try {
+  clearErrors();
+  verifyFields();
+  
+  if (verifyErrors()) {
+    console.warn("Required fields are empty!");
+    return;
   }
+
+  await props.onSubmit();
+  console.log("Sucesso em " + props.errorsHint + "!");
+
+  addAlert({
+    title: 'Sucesso!',
+    message: `Sucesso em ${props.errorsHint}!`,
+    alertType: 'success',
+    duration: 3000
+  });
+
+} catch (error) {
+  console.error(error);
+
+  addAlert({
+    title: 'Erro!',
+    message: `Houve um erro em ${props.errorsHint}!`,
+    alertType: 'error',
+    duration: 3000
+  });
+}
 }
 
 const verifyFields = () => {
@@ -151,10 +166,6 @@ const verifyFields = () => {
 
 const verifyErrors = () => {
     return (Object.values(errors.value).length > 0)
-}
-
-const clearfields = () => {
-    if (props.isClearfields) props.model = {}
 }
 
 const clearErrors = () => {

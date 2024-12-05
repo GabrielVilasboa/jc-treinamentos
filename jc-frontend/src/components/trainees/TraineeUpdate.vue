@@ -3,7 +3,7 @@
   :model="trainee"
   :requiredFields="requiredFields"
   :onSubmit="updateTrainee"
-  errorsHint="adicionar aluno"
+  errorsHint="atualizar aluno"
   :inputs="inputs"
   :selects="select(paymentPlans, formatPlanLabel)"
   :textareas="textarea"
@@ -24,6 +24,8 @@
   
   const paymentPlans = ref([]);
   const requiredFields = ["name", "birthDate", "cpf", "phone", "emergencyContact", "paymentDay", "address", "paymentPlanId"];
+
+  const emits = defineEmits(['updatedTrainee'])
   
   onMounted(async () => {
     paymentPlans.value = await PaymentPlanService.findAll();
@@ -32,6 +34,7 @@
 
   const updateTrainee = async () => {
       await TraineeService.update(props.trainee);
+      emits('updatedTrainee')
   };
   
   const formatPlanLabel = (plan) => {

@@ -45,8 +45,6 @@ export const inputs = [
         class: 'basis-full sm:basis-[calc(50%-1rem)]',
       }
 ]
-
-
 export const textarea = [
     {
         id: 'observations',

@@ -24,6 +24,7 @@
 
   const addPlan = async () => {
       await PaymentPlanService.create(plan.value);
+      plan.value = {}
       emit('planCreated')
   };
   </script>

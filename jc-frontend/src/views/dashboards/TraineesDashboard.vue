@@ -1,6 +1,8 @@
 <template>
   <div class="dashboard">
-    <BaseDashboard :title="$message.traineesDashboard.title" >
+    <BaseDashboard 
+    :title="$message.traineesDashboard.title"
+    >
       <template #header>
           <BaseSearchBar 
             v-model="searchTerm" 
@@ -19,32 +21,38 @@
       </template>
     </BaseDashboard>
 
-    <BaseModal ref="modalRefUpdate" :onClose="handlerOnCloseModal">
-      <template #title>
-        Atualizar Aluno
-      </template>
-      <template #content>
-        <TraineeUpdate :trainee="traineeForUpdate"></TraineeUpdate>
-      </template>
-    </BaseModal>
 
-    <BaseModal ref="modalRefAdd" :onClose="handlerOnCloseModal">
+    <BaseModal ref="modalRefAdd" :onClose="getTrainees">
       <template #title>
         Adicionar Aluno
       </template>
       <template #content>
-        <TraineeAdd />
+        <TraineeAdd @addTrainee="forceClose(modalRefAdd)"/>
+      </template>
+    </BaseModal>
+    
+     <BaseModal ref="modalRefUpdate" :onClose="getTrainees">
+      <template #title>
+        Atualizar Aluno
+      </template>
+      <template #content>
+        <TraineeUpdate :trainee="traineeForUpdate" @updatedTrainee="forceClose(modalRefUpdate)"></TraineeUpdate>
       </template>
     </BaseModal>
 
-    <BaseModal ref="modalRefDisabled" :onClose="handlerOnCloseModal">
+
+    <BaseModal ref="modalRefDisabled" :onClose="getTrainees">
       <template #title>
         Mudar Status Do Aluno
       </template>
       <template #content>
-        <TraineeTradeStatus 
-        :trainee="traineeForUpdate"
-        :closeModal="closeModalTradeStatus"/>
+        <BaseConfirm
+          :name="traineeForUpdate.name"
+          :onSend="changeStatus"
+          :closeModal="() => forceClose(modalRefDisabled)"
+          :message="(traineeForUpdate.isActive ? 'desativar' : 'ativar') + ' o aluno'"
+          :buttonMessage="(traineeForUpdate.isActive ? 'Desativar' : 'Ativar')" 
+    />
       </template>
     </BaseModal>
   </div>
@@ -59,7 +67,8 @@ import BaseSearchBar from '@/components/bases/BaseSearchBar.vue';
 import TraineeService from '../../service/TraineeService';
 import TraineeAdd from '@/components/trainees/TraineeAdd.vue';
 import TraineeUpdate from '@/components/trainees/TraineeUpdate.vue';
-import TraineeTradeStatus from '@/components/trainees/TraineeTradeStatus.vue';
+
+import BaseConfirm from '@/components/bases/BaseConfirm.vue';
 
 
 const trainees = ref([]);
@@ -74,13 +83,13 @@ onMounted(async () => {
   await getTrainees();
 });
 
+const forceClose = (modalRef) => {
+  modalRef.closeModal()
+}
+
 const openModal = (modalRef) => {
   modalRef.openModal();
 }
-
-const closeModalTradeStatus = () => {
-  modalRefDisabled.value.closeModal()
-} 
 
 const handlerOnCloseModal = async () => {
   await getTrainees();
@@ -112,6 +121,15 @@ const openModalForDisabledTrainee = (trainee) => {
 const openModalForAddTrainee = () => {
   openModal(modalRefAdd.value);
 }
+
+const changeStatus = async () => {
+  try {
+    await TraineeService.tradeStatus(traineeForUpdate.value.id);
+  } catch (error) {
+    console.error(error.message)
+    throw new Error('Falha ao mudar status!')
+  }
+};
 
 const getTrainees = async (name = '') => {
   try {

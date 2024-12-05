@@ -1,9 +1,11 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
+import GlobalAlerts from './components/alerts/GlobalAlerts.vue';
+import { RouterView } from 'vue-router';
 </script>
 
 <template>
-  <header class="APPVUE min-h-screen flex flex-col justify-between">
+  <div class="min-h-screen flex flex-col">
     <RouterView />
-  </header>
+    <GlobalAlerts />
+  </div>
 </template>

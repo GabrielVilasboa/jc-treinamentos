@@ -7,11 +7,19 @@
       >
         <div class="flex justify-between border-b-2 border-secondary m-2">
             <p class="text-xl font-bold  ">{{ paymentPlan.name }} </p>
-            <img 
-            src="../../assets/icons/edit.png" 
-            class="h-5 mr-4 self-center cursor-pointer" 
-            @click="() => sendSelected(paymentPlan)"
-        />
+            <div class="tolls flex">
+              <img
+              src="../../assets/icons/edit.png"
+              class="h-5 mr-4 self-center cursor-pointer"
+              @click="() => sendSelected(paymentPlan)"
+              />
+              <img
+              src="../../assets/icons/delete.png"
+              class="h-5 mr-4 self-center cursor-pointer"
+              @click="() => sendSelected(paymentPlan, 'delete')"
+              />
+                      
+            </div>
         </div>
         <p class="px-2">Valor: R$ {{ formatValueForReal(paymentPlan.value)}}</p>
         <p class="px-2">Frequência Semanal: {{ paymentPlan.numberDaysPerWeek }}</p>

@@ -3,8 +3,8 @@
     :model="plan"
     :requiredFields="requiredFields"
     :onSubmit="updatePlan"
-    button="Adicionar plano de pagamento!"
-    errorsHint="adicionar plano de pagamento"
+    button="Atualizar plano de pagamento!"
+    errorsHint="atualizar plano de pagamento"
     :inputs="inputs"
     :textareas="textarea"
   />
