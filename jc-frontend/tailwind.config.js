@@ -26,7 +26,7 @@ export default {
         'large-xxx': '48px',
         'ultra-large': '60px',
 
-        'screen-limit': '850px'
+        'screen-limit': '980px'
       },
     },
   },

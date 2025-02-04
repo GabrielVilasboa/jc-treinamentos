@@ -5,6 +5,9 @@ import MainView from '../views/MainView.vue'
 import FinanceDashboard from '../views/dashboards/FinanceDashboard.vue'
 import TraineesDashboard from '../views/dashboards/TraineesDashboard.vue'
 import PaymentsPlanDashboard from '../views/dashboards/PaymentsPlanDashboard.vue'
+import PaymentsDashboard from '../views/dashboards/PaymentsDashboard.vue'
+import SessionsDashboard from '../views/dashboards/SessionsDashboard.vue'
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -31,7 +34,16 @@ const router = createRouter({
         {
           path: 'payments-plan',
           component: PaymentsPlanDashboard
+        },
+        {
+          path: 'payments',
+          component: PaymentsDashboard
+        },
+        {
+          path: 'sessions',
+          component: SessionsDashboard
         }
+
       ]
     }
   ]

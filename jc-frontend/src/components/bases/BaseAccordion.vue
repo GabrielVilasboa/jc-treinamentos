@@ -8,7 +8,10 @@
           :class="iconFunction ? 'cursor-pointer' : 'cursor-auto'" 
           @click="iconFunction ? iconFunction() : null"
         />
-        <p class="name text-lg font-semibold cursor-pointer" @click="openItem">{{ props.title }}</p>
+        <div class="cursor-pointer flex flex-row" @click="openItem">
+          <p class="name text-lg font-semibold " >{{ props.title }}</p>
+        </div>
+        
       </div>
   
       <div class="flex">
@@ -20,6 +23,7 @@
           @click="extraFunction ? extraFunction() : null"
         />
         <img 
+          v-if="openButton"
           class="h-5 cursor-pointer transition-transform duration-300"
           :class="isOpen ? 'rotate-180' : 'rotate-0'"
           src="../../assets/icons/openClose.png"
@@ -41,6 +45,7 @@
     icon: String,
     iconFunction: Function,
     title: { type: String, required: true },
+    openButton: {type: Boolean, default: true},
     width: String,
     extraButton: String,
     extraFunction: Function,

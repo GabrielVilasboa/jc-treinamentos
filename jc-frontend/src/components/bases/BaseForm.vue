@@ -20,7 +20,7 @@
             :default="select.default"
             :id="select.id"
             :list="select.list"
-            :label-formatter="select.formatter"
+            :labelFormatter="select.formatter"
             :error="errors[select.id]"
             :class="select.class"
             />

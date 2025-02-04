@@ -38,6 +38,7 @@
 <script setup>
 import BaseCard from '../bases/BaseCard.vue';
 import BaseTextarea from '../bases/BaseTextarea.vue';
+import { formatValueForReal } from '@/utils/formatValue';
 
 const props = defineProps({
     paymentsPlan: Array,
@@ -59,11 +60,6 @@ const formatPlan = (paymentPlan) => {
     billingInterval: paymentPlan.billingInterval,
     description: paymentPlan.description
   }
-}
-
-const formatValueForReal = (value) =>
-{
-  return parseFloat(value).toFixed(2).replace('.', ',')
 }
 
 

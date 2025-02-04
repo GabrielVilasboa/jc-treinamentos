@@ -7,7 +7,7 @@
           <BaseSearchBar 
             v-model="searchTerm" 
             placeholder="Pesquisar por nome..." 
-            @update:modelValue="getTrainees"
+            @update:modelValue="fetchTrainees"
           />
           <img src="../../assets/icons/add.png" alt="Adicionar" class="cursor-pointer" @click="openModalForAddTrainee">
       </template>
@@ -22,7 +22,7 @@
     </BaseDashboard>
 
 
-    <BaseModal ref="modalRefAdd" :onClose="getTrainees">
+    <BaseModal ref="modalRefAdd" :onClose="fetchTrainees">
       <template #title>
         Adicionar Aluno
       </template>
@@ -31,7 +31,7 @@
       </template>
     </BaseModal>
     
-     <BaseModal ref="modalRefUpdate" :onClose="getTrainees">
+     <BaseModal ref="modalRefUpdate" :onClose="fetchTrainees">
       <template #title>
         Atualizar Aluno
       </template>
@@ -41,7 +41,7 @@
     </BaseModal>
 
 
-    <BaseModal ref="modalRefDisabled" :onClose="getTrainees">
+    <BaseModal ref="modalRefDisabled" :onClose="fetchTrainees">
       <template #title>
         Mudar Status Do Aluno
       </template>
@@ -80,7 +80,7 @@ const traineeForUpdate = ref({})
 
 
 onMounted(async () => {
-  await getTrainees();
+  await fetchTrainees();
 });
 
 const forceClose = (modalRef) => {
@@ -91,9 +91,7 @@ const openModal = (modalRef) => {
   modalRef.openModal();
 }
 
-const handlerOnCloseModal = async () => {
-  await getTrainees();
-}
+
 
 const openModalForEditTrainee = (trainee) => {
   traineeForUpdate.value = trainee;
@@ -131,7 +129,7 @@ const changeStatus = async () => {
   }
 };
 
-const getTrainees = async (name = '') => {
+const fetchTrainees = async (name = '') => {
   try {
     const data = await TraineeService.findWithAditionalData({ name });
     trainees.value = data;

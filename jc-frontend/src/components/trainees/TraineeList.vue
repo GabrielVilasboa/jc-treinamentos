@@ -24,7 +24,7 @@
               <p>Endereço: {{ trainee.address }}</p>
             </div>
             <div class="flex flex-col gap-y-0.5">
-              <p>Valor do Pagamento: {{ trainee.PaymentPlan.value.toFixed(2).replace('.', ',') }} R$</p>
+              <p>Valor do Pagamento: {{ formatValueForReal(trainee.PaymentPlan.value)}} R$</p>
               <p>Telefone: {{ trainee.phone }}</p>
               <p>Contato de Emergência: {{ trainee.emergencyContact }}</p>
               <p>Frequência: {{ trainee.PaymentPlan.numberDaysPerWeek }} dias p/ semana</p>
@@ -52,6 +52,7 @@
   <script setup>
   import { formatCPF } from '../../utils/formatCpf';
   import { formatDate } from '../../utils/dateUtils';
+  import { formatValueForReal } from '@/utils/formatValue';
   import WeekComponent from '../../components/schedule/WeekComponent.vue';
   import BaseAccordion from '@/components/bases/BaseAccordion.vue';
   import BaseTextarea from '../bases/BaseTextarea.vue';

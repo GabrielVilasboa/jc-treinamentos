@@ -24,7 +24,7 @@
 import { computed, watch, ref } from 'vue'
 
 const props = defineProps({
-    modelValue: [String, Number],
+    modelValue: [String, Number, Date],
     id: { type: String, required: true },
     type: { type: String, default: 'text' },
     label: String,

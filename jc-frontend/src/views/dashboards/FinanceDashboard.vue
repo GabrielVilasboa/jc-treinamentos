@@ -1,39 +1,22 @@
-<script setup>
-import BasicCard from '../../components/bases/BaseCard.vue';
-</script>
+
 
 <template>
     <div class="dashboard ">
-        <h1>{{ $message.financeDashboard.title }}</h1>
-        <div class="cards ">
-            <BasicCard>
-                Numero de Alunos ativos: Numero de Alunos Ativos <br>
-                Lucro Mensal: Lucro Mensal <br>
+        <BaseDashboard title="Financeiro">
+            <template #body>
+                <div class="flex flex-wrap justify-around gap-y-4">
+                    <BasicCard class="flex-auto flex-col min-w-52 max-w-[calc(50%-1rem)] max-md:h-min">
+                        Numero de Alunos ativos: Numero de Alunos Ativos <br>
+                        Lucro Mensal: Lucro Mensal <br>
+                    </BasicCard>
 
-            </BasicCard>
-            <BasicCard> Olá Mundo</BasicCard>
-            <BasicCard> Olá Mundo</BasicCard>
-            <BasicCard> Olá Mundo</BasicCard>
-            <BasicCard> Olá Mundo</BasicCard>
-
-
-        </div>
+                </div>
+            </template>
+        </BaseDashboard>
     </div>
 </template>
 
-<style scoped>
-h1 {
-    width: 100%;
-    text-align: left;
-}
-
-.cards {
-    margin-top: var(--spacing-large-x);
-    width: 80vw;
-    max-width: 1500px;
-    justify-content: space-around;
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-large-xx);
-}
-</style>
+<script setup>
+import BaseDashboard from './BaseDashboard.vue'
+import BasicCard from '../../components/bases/BaseCard.vue';
+</script>

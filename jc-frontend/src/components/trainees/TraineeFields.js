@@ -59,7 +59,7 @@ export const select = (paymentPlans, formatPlanLabel) => {
         label: 'Plano de pagamento',
         default: 'Plano de pagamento',
         list: paymentPlans,
-        labelFormatter: formatPlanLabel,
+        formatter: formatPlanLabel,
         class: 'basis-full sm:basis-[calc(50%-1rem)]'
     }]
 }

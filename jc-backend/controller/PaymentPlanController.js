@@ -9,6 +9,9 @@ class PaymentPlanController extends BaseController {
 
   async findAll(req, res) {
     try {
+
+      const {paranoid} = req.query
+
       const paymentPlans = await PaymentPlan.findAll({
         attributes: {
           include: [
@@ -25,7 +28,8 @@ class PaymentPlanController extends BaseController {
           },
         ],
         group: ['PaymentPlan.id'],
-        order: [['name']]
+        order: [['name']],
+        paranoid: paranoid === "false" ? false : true,
       })
       res.status(200).json(paymentPlans);
     } catch (error) {
@@ -97,8 +101,9 @@ class PaymentPlanController extends BaseController {
         return;
       }
 
-      res.status(500).json({
+      res.status(402).json({
         erro: "Existem trainees associados a este plano de pagamento.",
+        existisTrainees: true
       });
     } catch (error) {
       res.status(500).json({ erro: error.message });

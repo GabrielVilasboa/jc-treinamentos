@@ -6,4 +6,4 @@ class ScheduleService extends BaseService{
     }
 }
 
-export default ScheduleService
+export default new ScheduleService ()

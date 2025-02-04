@@ -6,4 +6,4 @@ class SessionService extends BaseService{
     }
 }
 
-export default SessionService
+export default new SessionService()

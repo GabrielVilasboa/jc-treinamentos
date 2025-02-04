@@ -1,6 +1,22 @@
 <template>
     <div 
     class="pt-ultra-large fixed top-0 left-0 h-screen w-ultra-large shadow bg-secondary">
+            <!-- FinanceDashboard -->
+            <router-link 
+            to="/" 
+            class="router-button flex flex-col items-center w-ultra-large hover:bg-secondaryHover hover:shadow-lg tooltip tooltip-right"
+
+            :class="{
+                'bg-secondaryHover shadow-lg': route.path === '/',
+                'bg-secondary': route.path !== '/'
+            }"
+            data-tip="Financeiro"
+            >
+            <img 
+                class="w-large-xxx h-large-xxx my-3" 
+                src="../../assets/icons/finance.png"
+                alt="trainees Page">
+        </router-link>
         <!-- TraineeDashboard -->
         <router-link 
             to="/trainees" 
@@ -16,22 +32,6 @@
                 src="../../assets/icons/trainees.png" 
                 alt="trainees Page">
         </router-link>
-        <!-- FinanceDashboard -->
-        <router-link 
-            to="/" 
-            class="router-button flex flex-col items-center w-ultra-large hover:bg-secondaryHover hover:shadow-lg tooltip tooltip-right"
-
-            :class="{
-                'bg-secondaryHover shadow-lg': route.path === '/',
-                'bg-secondary': route.path !== '/'
-            }"
-            data-tip="Financeiro"
-            >
-            <img 
-                class="w-large-xxx h-large-xxx my-3" 
-                src="../../assets/icons/finance.png"
-                alt="trainees Page">
-        </router-link>
         <!-- PaymentsPlanDashboard -->
         <router-link 
             to="/payments-plan" 
@@ -44,8 +44,38 @@
             >
             <img 
                 class="w-large-xxx h-large-xxx my-3" 
-                src="../../assets/icons/payments.png" 
+                src="../../assets/icons/paymentsPlan.png" 
                 alt="payments plan page">
+        </router-link>
+        <!-- PaymentsDashboard -->
+        <router-link 
+            to="/payments" 
+            class="router-button flex flex-col items-center w-ultra-large hover:bg-secondaryHover hover:shadow-lg tooltip tooltip-right" 
+            :class="{
+                'bg-secondaryHover shadow-lg': route.path === '/payments',
+                'bg-secondary': route.path !== '/payments'
+            }"
+            data-tip="Pagamentos"
+            >
+            <img 
+                class="w-large-xxx h-large-xxx my-3" 
+                src="../../assets/icons/payments.png" 
+                alt="payments page">
+        </router-link>
+        <!--Sessions and schedules -->
+        <router-link 
+            to="/sessions" 
+            class="router-button flex flex-col items-center w-ultra-large hover:bg-secondaryHover hover:shadow-lg tooltip tooltip-right" 
+            :class="{
+                'bg-secondaryHover shadow-lg': route.path === '/sessions',
+                'bg-secondary': route.path !== '/sessions'
+            }"
+            data-tip="Sessões"
+            >
+            <img 
+                class="w-large-xxx h-large-xxx my-3" 
+                src="../../assets/icons/schedule.png" 
+                alt="payments page">
         </router-link>
     </div>
 </template>

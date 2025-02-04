@@ -14,6 +14,7 @@
   <script setup>
   import PaymentPlanService from '@/service/PaymentPlanService';
   import TraineeService from '@/service/TraineeService';
+  import { formatValueForReal } from '@/utils/formatValue.js';
   import {inputs, select, textarea} from './TraineeFields.js'
   import { ref, onMounted} from 'vue';
   import BaseForm from '../bases/BaseForm.vue';
@@ -38,8 +39,8 @@
   };
   
   const formatPlanLabel = (plan) => {
-    return `${plan.name} - R$${plan.value}`;
-  };
+        return `${plan.name} - R$${formatValueForReal(plan.value)}` ;
+    };
   
   </script>
   

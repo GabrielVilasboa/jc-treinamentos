@@ -28,7 +28,7 @@ const props = defineProps({
     type: Function,
     default: (item) => item.name
   },
-  error: String, // Nova prop para mensagem de erro
+  error: String,
 })
 
 defineEmits(["update:modelValue"])

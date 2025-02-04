@@ -13,7 +13,7 @@
           <img
             src="../../assets/icons/search.png"
             v-if="hasSearchButton"
-            class="cursor-pointer icons flex h-6 "
+            class="cursor-pointer icons flex h-6"
           >
           </img>
       </label>
