@@ -11,7 +11,8 @@
             :key="index">
             <div class="flex justify-between items-center p-2">
               <p class="  py-2 text-lg font-medium">{{ session.time }}</p>
-              <img class="h-6 cursor-pointer" src="../../assets/icons/delete.png" alt="delet session">
+              <img class="h-6 cursor-pointer" src="../../assets/icons/delete.png" alt="delet session"
+                @click="sendSessionId(session.id, schedule.weekDay, session.time )">
             </div>
             <div class="max-lg:text-sm" v-for="(trainee, index) in session.trainees">
               <div class="border-b flex justify-between">
@@ -20,9 +21,8 @@
                   <p>{{ trainee.name }}</p>
                 </div>
                 <div class="tools flex">
-                  <img src="../../assets/icons/actived.png" class=" h-4 px-2 my-auto cursor-pointer" />
                   <img src="../../assets/icons/x.png" class=" h-4 px-2 my-auto cursor-pointer"
-                    @click="sendTraineeSessionId(trainee.traineeSessionId, 'deleted')" />
+                    @click="sendTraineeSessionId(trainee.traineeSessionId, trainee.id, session.time, schedule.weekDay)" />
                 </div>
               </div>
             </div>
@@ -44,7 +44,7 @@ const props = defineProps({
   schedules: { type: Array, required: true },
 });
 
-const emits = defineEmits(['sendScheduleData', 'sendTraineeSessionId'])
+const emits = defineEmits(['sendScheduleData', 'sendTraineeSessionId', 'sendSessionId', 'sendScheduleConfigId'])
 
 const sendScheduleData = (schedule, session, message = "") => {
   const dataSend = {
@@ -52,12 +52,15 @@ const sendScheduleData = (schedule, session, message = "") => {
     dayOfWeek: schedule.weekDay,
     sessionId: session.id
   }
-
   emits('sendScheduleData', dataSend, message)
-
 }
 
-const sendTraineeSessionId = (id, message = "") => {
-  emits('sendTraineeSessionId', id, message)
+const sendSessionId = (sessionId, day, time) => {
+  emits ('sendSessionId', sessionId, day, time)
+}
+
+
+const sendTraineeSessionId = async (id, traineeId, time, dayOfWeek) => {
+  emits('sendTraineeSessionId', id, traineeId, time, dayOfWeek)
 }
 </script>

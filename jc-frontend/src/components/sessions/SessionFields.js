@@ -29,7 +29,7 @@ export const inputsAddNotRecorrings = [
 export const select = [{
     id: "dayOfWeek",
     label:  "Dia da semana",
-    default: 'Plano de pagamento',
+    default: 'Dia da semana',
     list: [
         {name: 'Domingo', id: 0},
         {name: 'Segunda-feira', id: 1},
