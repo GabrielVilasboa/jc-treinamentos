@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import verifyToken from '../utils/verifyToken'
 import LoginView from '../views/LoginView.vue'
 import MainView from '../views/MainView.vue'
-import FinanceDashboard from '../views/dashboards/FinanceDashboard.vue'
+import MainDashboard from '../views/dashboards/MainDashboard.vue'
 import TraineesDashboard from '../views/dashboards/TraineesDashboard.vue'
 import PaymentsPlanDashboard from '../views/dashboards/PaymentsPlanDashboard.vue'
 import PaymentsDashboard from '../views/dashboards/PaymentsDashboard.vue'
@@ -25,7 +25,7 @@ const router = createRouter({
       children: [
         {
           path: '/',
-          component: FinanceDashboard
+          component: MainDashboard
         },
         {
           path: 'trainees',

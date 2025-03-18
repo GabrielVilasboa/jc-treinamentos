@@ -22,6 +22,7 @@ export const inputs = [
     id: "billingInterval",
     type: "number",
     label: "Frequência de pagamento",
+    placeholder: "Frequência em meses",
   },
 ];
 

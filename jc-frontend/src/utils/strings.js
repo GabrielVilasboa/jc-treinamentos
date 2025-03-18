@@ -5,7 +5,7 @@ const message = {
         password: "Password",
         enter: "Entrar"
     },
-    financeDashboard: {
+    mainDashboard: {
         title: "Painel Financeiro",
     },
     traineesDashboard: {

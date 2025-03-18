@@ -10,7 +10,7 @@
             v-for="(session, index) in schedule.Sessions" 
             :key="index">
             <div class="flex justify-between items-center p-2">
-              <p class="  py-2 text-lg font-medium">{{ session.time }}</p>
+              <p class="  py-2 text-lg font-medium">{{ formatTime(session.time) }}</p>
               <img class="h-6 cursor-pointer" src="../../assets/icons/delete.png" alt="delet session"
                 @click="sendSessionId(session.id, schedule.weekDay, session.time )">
             </div>
@@ -36,7 +36,7 @@
 </template>
 
 <script setup>
-import { getDayName, formatDate } from '@/utils/dateUtils';
+import { getDayName, formatDate, formatTime } from '@/utils/dateUtils';
 import BaseCard from '../bases/BaseCard.vue';
 import BaseAccordion from '../bases/BaseAccordion.vue';
 

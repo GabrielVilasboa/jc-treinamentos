@@ -9,9 +9,9 @@
           'text-black': hasClass(index),
         }">
         <span>{{ day }}</span>
-        <div v-if="hasClass(index)" class="text-xs mt-1">
+        <div v-if="hasClass(index)" class="text-xs mt-1 text-center">
           <div v-for="(session, index) in getSessionsForDay(index)" :key="index">
-            {{ session.time }}
+            {{ formatTime(session.time) }}
           </div>
         </div>
       </div>
@@ -20,6 +20,8 @@
 </template>
 
 <script setup>
+
+import { formatTime } from '@/utils/dateUtils'
 
 const props = defineProps({
   traineeSessions: {

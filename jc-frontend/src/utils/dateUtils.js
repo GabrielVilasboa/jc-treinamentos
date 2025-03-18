@@ -1,4 +1,4 @@
-import {format, startOfMonth, addMonths, addDays, subDays} from "date-fns";
+import {format, startOfMonth, addMonths, parse, subDays} from "date-fns";
 
 export const defaultFormat = 'yyyy-MM-dd'
 
@@ -23,6 +23,11 @@ export const formatDate = (date , format ) => {
 
 export const subDay = (date, numbersOfDay) => {
   return format(subDays(date, numbersOfDay), defaultFormat)
+}
+
+export const formatTime = (timeStr) => {
+  const time = parse(timeStr, 'HH:mm:ss', new Date());
+  return format(time, "HH:mm")
 }
 
 export const today = format(new Date(), defaultFormat);

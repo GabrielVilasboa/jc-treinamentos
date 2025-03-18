@@ -13,7 +13,27 @@ class TraineeService extends BaseService{
       }catch(error){
         console.error("Erro ao buscar trainees:", error)
       }
+    }
+
+    async findTraineeInfos(){
+      try{
+        const response = await http.get('/trainees/infos')
+        console.log('GET /api/trainees/infos' + response.data)
+        return response.data;
+      }catch(error){
+      console.error("Erro ao buscar trainees:", error)
       }
+    }
+
+    async findBirthDaysInfo(){
+      try{
+        const response = await http.get('/trainees/find-birthdays')
+        console.log('GET /api/trainees/find-birthdays' + response.data)
+        return response.data
+      }catch(error){
+        console.error("Erro ao buscar trainees:", error)
+      }
+    }
 
     async tradeStatus(id){
       try {

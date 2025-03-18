@@ -1,7 +1,7 @@
 <template>
     <div 
     class="pt-ultra-large fixed top-0 left-0 h-screen w-ultra-large shadow bg-secondary">
-            <!-- FinanceDashboard -->
+            <!-- MainDashboard -->
             <router-link 
             to="/" 
             class="router-button flex flex-col items-center w-ultra-large hover:bg-secondaryHover hover:shadow-lg tooltip tooltip-right"
@@ -10,7 +10,7 @@
                 'bg-secondaryHover shadow-lg': route.path === '/',
                 'bg-secondary': route.path !== '/'
             }"
-            data-tip="Financeiro"
+            data-tip="Painel"
             >
             <img 
                 class="w-large-xxx h-large-xxx my-3" 

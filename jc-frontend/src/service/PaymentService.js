@@ -6,6 +6,15 @@ class PaymentService extends BaseService{
         super("payments")
     }
 
+    async findInfo(){
+        try{
+            const response = await http.get(`/payments/infos`)
+            return response.data
+        }catch(error){
+            console.log("Erro ao buscar informações" + error.message)
+        }
+    }
+
     async confirmPayment(id){
         try{
             const response = await http.put(`/payments/status-to-true/${id}`)
