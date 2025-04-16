@@ -29,7 +29,7 @@
 
     <BaseModal ref="modalRefDelete" :onClose="handlerOnCloseModal">
       <template #title>
-        Mudar Status Do Aluno
+        Deletar plano de pagamento
       </template>
       <template #content>
         <BaseConfirm

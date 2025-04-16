@@ -11,7 +11,7 @@
               <img
               src="../../assets/icons/edit.png"
               class="h-5 mr-4 self-center cursor-pointer"
-              @click="() => sendSelected(paymentPlan)"
+              @click="() => sendSelected(paymentPlan, 'edit')"
               />
               <img
               src="../../assets/icons/delete.png"
