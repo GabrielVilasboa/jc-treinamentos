@@ -211,6 +211,8 @@ class ScheduleController extends BaseController {
         lastSession: lastSession.Sessions[0] || {},
         nextSession:  nextSession.Sessions[0] || {},
       }
+
+      console.error(actualSession.Sessions[0] == lastSession.Session[0])
     
       return res.status(200).json(sessions);
     } catch (error) {

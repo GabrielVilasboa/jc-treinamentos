@@ -54,8 +54,8 @@ const formatedInfo = (info) => {
         },
         {
           name: "Sessão atual",
-          time: actualSession.time || null,
-          trainees: actualSession.TraineeSessions || null
+          time: actualSession.time == nextSession.time ? null : actualSession.time || null ,
+          trainees: actualSession.time == nextSession.time ? null : actualSession.TraineeSessions || null
         },
         {
           name: "Proxima sessão",
